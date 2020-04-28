@@ -1,0 +1,23 @@
+{
+  "name": "pokemon-generator",
+  "version": "1.0.0",
+  "description": "Generating Pokemon with a generative adversarial network.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ziyi-zhu/pokemon-generator.git"
+  },
+  "author": "Ziyi Zhu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ziyi-zhu/pokemon-generator/issues"
+  },
+  "homepage": "https://github.com/ziyi-zhu/pokemon-generator#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
