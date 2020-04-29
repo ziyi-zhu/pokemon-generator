@@ -1,5 +1,10 @@
+#generatedImage {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 .image {
-  margin-right: 10px;
   height: 100px;
   width: 100px;
   image-rendering: optimizeSpeed;
@@ -9,4 +14,22 @@
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
   border: 5px solid #ddd;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.image-custom {
+  height: 250px;
+  width: 250px;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: optimize-contrast;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  border: 5px solid #ddd;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
