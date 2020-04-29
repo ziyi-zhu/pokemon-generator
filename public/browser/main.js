@@ -20,8 +20,8 @@ const pokemonClasses = [
 var generator, model;
 
 const start = async function(a, b) {
-  generator = await tf.loadLayersModel('../public/tensorflow/generator/model.json');
-  model = await tf.loadLayersModel('../public/tensorflow/model/model.json');
+  generator = await tf.loadLayersModel('public/tensorflow/generator/model.json');
+  model = await tf.loadLayersModel('public/tensorflow/model/model.json');
 }
 
 start();
