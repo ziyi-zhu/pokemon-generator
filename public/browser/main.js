@@ -17,11 +17,11 @@ const pokemonClasses = [
   'Fairy'
 ];
 
-var generator, model;
+var generator, classifier;
 
 const start = async function(a, b) {
-  generator = await tf.loadLayersModel('public/tensorflow/generator/model.json');
-  model = await tf.loadLayersModel('public/tensorflow/model/model.json');
+  generator = await tf.loadLayersModel('public/model/generator/model.json');
+  classifier = await tf.loadLayersModel('public/model/classifier/model.json');
 }
 
 start();
@@ -36,7 +36,7 @@ for (let i = 0; i < pokemonNumber; i++) {
   $('#generatedImage').append(`<canvas id="${i}" class="image" data-toggle="tooltip"></canvas>`)
 }
 
-$('#actionButton').click(function() {
+const generatePokemon = async function() {
   for (let i = 0; i < pokemonNumber; i++) {
     let noise = tf.randomNormal([1, 100]);
     let generatedImage = generator.predict(noise)
@@ -47,7 +47,7 @@ $('#actionButton').click(function() {
     imageData = tf.image.resizeNearestNeighbor(imageData, [58, 58]);
 
     let modelInput = tf.image.resizeNearestNeighbor(imageData, [128, 128]);
-    let result = model.predict(tf.reshape(modelInput, [1, 128, 128, 3]));
+    let result = classifier.predict(tf.reshape(modelInput, [1, 128, 128, 3]));
 
     let top = tf.topk(result, 2, true).indices.dataSync();
 
@@ -60,9 +60,17 @@ $('#actionButton').click(function() {
       type = `${pokemonClasses[top[0]]}`;
     }
 
-    $(`#${i}`).attr("title", `${type}`);
+    $(`#${i}`).attr("data-original-title", `${type}`);
     tf.browser.toPixels(imageData, document.getElementById(`${i}`));
   }
 
   $('[data-toggle="tooltip"]').tooltip()
+}
+
+$('#actionButton').click(function() {
+  window.requestAnimationFrame( () => {
+      $("#generatePokemon").toast("show");
+    } );
+  
+  generatePokemon();
 })
